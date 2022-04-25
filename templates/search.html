@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block description %}
+     We have variety of products
+{% endblock %}
+{% block title %}
+     Search - AK Shop
+{% endblock %}
+{% block content %}
+<style>
+    .my-footer{
+      display: none;
+    }
+    .search-footer{
+      background-color: #f8f9fa;
+      height: 60px;
+    }
+    .search-footer p{
+      padding-top:20px;
+      font-size:15px
+   }
+</style>
+<div>
+    <h5 class="text-center my-search-text">You have searched for: <b>"{{query}}"</b></h5>
+</div>
+<div class="container">
+    <div class="row mx-auto">
+        {% if products %}
+        {% for product in products %}
+        <div class="my-bottom-margin col-9 col-sm-12 col-md-4 col-lg-4">
+                <div class="card text-center" style="min-width:18rem;">
+                <a href="{{product.get_url}}"><img class="my-image" src="{{product.image.url}}" alt="{{product.name}}"></a>
+                <div class="card-body">
+                    <h4>{{product.name}}</h4>
+                    <p>&#8377; {{product.price}}</p>
+                </div>
+                </div>
+        </div>
+
+        {% endfor %}
+        {% else %}
+        <div class="row mx-auto">
+            <p class="text-center my-search-text">No Results found</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+<div class="footer fixed-bottom search-footer">
+    <p class="text-center">&copy;AK tech pvt ltd.All rights reserved.</p>
+</div>
+{% endblock %}
+
